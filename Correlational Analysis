@@ -1,0 +1,16 @@
+df_top_crimes <- df_arrest %>%
+  group_by(Category) %>% 
+  summarize(count = n()) %>%
+  arrange(desc(count))
+
+datatable(df_top_crimes, options = list(pageLength = 10,scrollX='400px'))
+df_arrest_time_crime <- df_arrest %>%
+  filter(Category %in% df_top_crimes$Category[2:19]) %>%
+  mutate(Hour = sapply(Time, get_hour)) %>%
+  group_by(Category, DayOfWeek, Hour) %>% 
+  summarize(count = n())
+
+df_arrest_time_crime$DayOfWeek <- factor(df_arrest_time_crime$DayOfWeek, level = rev(dow_format))
+df_arrest_time_crime$Hour <- factor(df_arrest_time_crime$Hour, level = 0:23, label = hour_format)
+
+datatable(df_arrest_time_crime, options = list(pageLength = 10,scrollX='400px'))
