@@ -1,0 +1,4 @@
+library(readr)
+# path <- "http://spatial.binghamton.edu/projects/crime/data/SF_Crime_2007_2016.csv"
+path <- "C:\Users\gouri\Downloads\Policedeptreport.csv"
+df <- read_csv(path)
