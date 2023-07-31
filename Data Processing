@@ -8,3 +8,6 @@ df <- df %>% mutate(Category = proper_case(Category),
                     Descript = proper_case(Descript),
                     PdDistrict = proper_case(PdDistrict),
                     Resolution = proper_case(Resolution),
+    Time = as.character(Time))
+df_sub <- df[1:100,]  
+datatable(df_sub, options = list(pageLength = 5,scrollX='400px'))
