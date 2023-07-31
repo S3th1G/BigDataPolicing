@@ -1,0 +1,17 @@
+df_theft <- df %>% filter(grepl("Larceny/Theft", Category))
+
+df_theft_daily <- df_theft %>%
+  mutate(Date = as.Date(Date, "%m/%d/%Y")) %>%
+  group_by(Date) %>%
+  summarize(count = n()) %>%
+  arrange(Date)
+
+library(ggplot2)
+library(scales)
+plot <- ggplot(df_theft_daily, aes(x = Date, y = count)) +
+  geom_line(color = "#F2CA27", size = 0.1) +
+  geom_smooth(color = "#1A1A1A") +
+  # fte_theme() +
+  scale_x_date(breaks = date_breaks("1 year"), labels = date_format("%Y")) +
+  labs(x = "Date of Theft", y = "Number of Thefts", title = "Daily Thefts in Sussex from 2007 – 2016")
+plot
