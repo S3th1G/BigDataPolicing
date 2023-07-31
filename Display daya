@@ -1,0 +1,4 @@
+library(DT)
+df_sub <- df[1:100,]  
+df_sub$Time <- as.character(df_sub$Time) 
+datatable(df_sub, options = list(pageLength = 5,scrollX='400px'))
