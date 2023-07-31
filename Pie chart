@@ -1,0 +1,3 @@
+bp<-ggplot(df_category, aes(x="", y=Percentage, fill=Category)) + geom_bar(stat="identity") 
+pie <- bp + coord_polar("y") 
+pie
