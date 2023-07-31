@@ -1,0 +1,8 @@
+dow_format <- c("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday")
+hour_format <- c(paste(c(12,1:11),"AM"), paste(c(12,1:11),"PM"))
+
+df_theft_time$DayOfWeek <- factor(df_theft_time$DayOfWeek, level = rev(dow_format))
+df_theft_time$Hour <- factor(df_theft_time$Hour, level = 0:23, label = hour_format)
+
+# df_theft_time %>% head(10)
+datatable(df_theft_time, options = list(scrollX='400px'))
