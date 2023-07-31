@@ -1,0 +1,10 @@
+# str(df)
+proper_case <- function(x) {
+  return (gsub("\\b([A-Z])([A-Z]+)", "\\U\\1\\L\\2" , x, perl=TRUE))
+}
+
+library(dplyr)
+df <- df %>% mutate(Category = proper_case(Category),
+                    Descript = proper_case(Descript),
+                    PdDistrict = proper_case(PdDistrict),
+                    Resolution = proper_case(Resolution),
